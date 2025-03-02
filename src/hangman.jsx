@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 const Hangman = () => {
-  const [word, setWord] = useState('MAGYARORSZÁG');
+  const [word, setWord] = useState('DEBRECEN');
   const [guessedLetters, setGuessedLetters] = useState([]);
   const [remainingGuesses, setRemainingGuesses] = useState(6);
   const mountRef = useRef(null);
@@ -17,7 +17,7 @@ const Hangman = () => {
     .join(' ');
 
   const resetGame = () => {
-    const words = ['EGER', 'BUDAPEST', 'DEBRECEN', 'SZEGED', 'KEREK', 'BALATON', 'TALAJ'];
+    const words = ['EGER', 'BUDAPEST', 'SZEGED', 'KECSKEMET', 'SOPRON', 'BALATON', 'TISZA', 'DUNA', 'BAKONY'];
     setWord(words[Math.floor(Math.random() * words.length)]);
     setGuessedLetters([]);
     setRemainingGuesses(6);
@@ -526,7 +526,7 @@ const Hangman = () => {
     const body = new THREE.Mesh(
       new THREE.CylinderGeometry(0.15, 0.25, 1.2),
       new THREE.MeshStandardMaterial({ 
-        color: 0x4169E1,
+        color: 0xFF0000,
         roughness: 0.7,
         metalness: 0.1
       })
@@ -539,7 +539,7 @@ const Hangman = () => {
     const leftArm = new THREE.Group();
     const leftUpperArm = new THREE.Mesh(
       new THREE.CylinderGeometry(0.08, 0.06, 0.5),
-      new THREE.MeshStandardMaterial({ color: 0x4169E1 })
+      new THREE.MeshStandardMaterial({ color: 0xFF0000 })
     );
     leftUpperArm.position.set(0, -0.2, 0);
     leftUpperArm.rotation.z = Math.PI / 6;
@@ -552,7 +552,7 @@ const Hangman = () => {
     const rightArm = new THREE.Group();
     const rightUpperArm = new THREE.Mesh(
       new THREE.CylinderGeometry(0.08, 0.06, 0.5),
-      new THREE.MeshStandardMaterial({ color: 0x4169E1 })
+      new THREE.MeshStandardMaterial({ color: 0xFF0000 })
     );
     rightUpperArm.position.set(0, -0.2, 0);
     rightUpperArm.rotation.z = -Math.PI / 6;
@@ -565,7 +565,7 @@ const Hangman = () => {
     const leftLeg = new THREE.Group();
     const leftUpperLeg = new THREE.Mesh(
       new THREE.CylinderGeometry(0.09, 0.07, 0.8),
-      new THREE.MeshStandardMaterial({ color: 0x4169E1 })
+      new THREE.MeshStandardMaterial({ color: 0xFF0000 })
     );
     leftUpperLeg.position.set(0, -0.4, 0);
     leftUpperLeg.rotation.z = Math.PI / 12;
@@ -578,7 +578,7 @@ const Hangman = () => {
     const rightLeg = new THREE.Group();
     const rightUpperLeg = new THREE.Mesh(
       new THREE.CylinderGeometry(0.09, 0.07, 0.8),
-      new THREE.MeshStandardMaterial({ color: 0x4169E1 })
+      new THREE.MeshStandardMaterial({ color: 0xFF0000 })
     );
     rightUpperLeg.position.set(0, -0.4, 0);
     rightUpperLeg.rotation.z = -Math.PI / 12;
