@@ -421,27 +421,36 @@ const Hangman = () => {
         figureGroupRef.current.rotation.x = Math.sin(time * 0.5) * 0.05;
       }
 
-      // Victory/Defeat celebration animation
-      const gameEnded = remainingGuesses === 0 || !maskedWord?.includes('_');
-      if (gameEnded) {
-        // Make characters jump higher and faster
-        [king, queen, guard1, guard2].forEach((character, index) => {
+      // Háttérben lévő karakterek dülöngélése
+      [king, queen, guard1, guard2].forEach((character, index) => {
+        // Alap dülöngélés - csökkentett értékekkel
+        character.rotation.z = Math.sin(time * 1.5 + index) * 0.03;
+        character.rotation.x = Math.cos(time + index) * 0.02;
+        
+        // Enyhe oldalirányú mozgás - csökkentett érték
+        character.position.x += Math.sin(time * 1.5 + index) * 0.0005;
+        
+        // Ha a játék véget ért, akkor erőteljesebb az animáció
+        if (remainingGuesses === 0 || !maskedWord?.includes('_')) {
           character.position.y = Math.sin(time * 8 + index * 2) * 1.5;
           character.rotation.y = Math.sin(time * 4) * 0.5;
-        });
+        }
+      });
+
+      // Executioner animation - csökkentett érték
+      executioner.rotation.z = Math.sin(time * 1.2) * 0.02;
+      
+      // Make dogs spin and jump more energetically
+      [dog1, dog2].forEach((dog, index) => {
+        // Alap dülöngélés - csökkentett érték
+        dog.rotation.z = Math.sin(time * 1.5 + index) * 0.05;
         
-        // Make dogs spin and jump more energetically
-        [dog1, dog2].forEach((dog, index) => {
+        // Ha a játék véget ért, akkor erőteljesebb az animáció
+        if (remainingGuesses === 0 || !maskedWord?.includes('_')) {
           dog.position.y = Math.sin(time * 8 + index * 2) * 1;
           dog.rotation.y = time * 4;
-        });
-
-        // Make executioner dance more vigorously if player lost
-        if (remainingGuesses === 0) {
-          executioner.position.y = Math.sin(time * 8) * 1;
-          executioner.rotation.y = time * 3;
         }
-      }
+      });
 
       // Sun movement
       sun.position.x = 15 * Math.cos(time * 0.1);
